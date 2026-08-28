@@ -1,6 +1,8 @@
 `timescale 1ns/1ps
 
 module dotpcontroller_tb;
+    typedef logic signed [7:0] int8_t;
+
     logic               clk;
     logic               rst_n;
     logic               in_valid;
@@ -13,8 +15,8 @@ module dotpcontroller_tb;
     logic               acc_ready;
 
     integer expected;
-    integer random_a;
-    integer random_b;
+    int8_t random_a;
+    int8_t random_b;
     integer i;
 
     DotProductController dut (
@@ -131,8 +133,8 @@ module dotpcontroller_tb;
         // Randomized signed vector checked against a software accumulator.
         expected = 0;
         for (i = 0; i < 32; i = i + 1) begin
-            random_a = $urandom_range(0, 255) - 128;
-            random_b = $urandom_range(0, 255) - 128;
+            random_a = int8_t'($urandom_range(0, 255) - 128);
+            random_b = int8_t'($urandom_range(0, 255) - 128);
             expected = expected + random_a * random_b;
             send_pair(random_a, random_b, 16'd32);
         end
