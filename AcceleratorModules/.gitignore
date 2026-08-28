@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Simulation output
+*.out
+*.vcd
+*.fst
+obj_dir/
+
+# Generated builds
+AcceleratorModules/build/
+build/
